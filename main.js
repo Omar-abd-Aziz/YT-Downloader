@@ -14,15 +14,15 @@ document.querySelector(".download").addEventListener("click",()=>{
 		})
 		  .then((response) => response.json())
 		  .then((data) => {
-			  const AllUrls = data.url;
-			  console.log(data);
-			showAllUrls(AllUrls,data.thumb,data.meta.title,data.id);
+			const AllUrls = data.url;
+
+			console.log(data);
+
+			showAllUrls(data.hosting,AllUrls,data.thumb,data.meta.title,data.id);
+
 
 		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-
+		
 
 
 		// https://apiyt.com/iframe/?vid=vI2L0ADzziI
@@ -43,37 +43,86 @@ document.querySelector(".download").addEventListener("click",()=>{
 
 
 
+
+
+
+
 })
 
 
 
 
-function showAllUrls(AllUrls,img,title,id){
-	document.querySelector(".LinksDad").innerHTML=`
+function showAllUrls(isFacebook,AllUrls,img,title,id){
 	
-	<img src="${img}" alt="" style="width: 80%; margin: 0 auto 30px auto; border-radius: 20px;">
-	<br>
-	<h1 style="text-align: center;">${title}</h1>
-	<br>
-	<iframe rel="nofollow" style="width:200px; height:35px; border:none; border-radius: 6px; display:block;" src="https://apiyt.com/iframe/?vid=${id}"></iframe>
-	<br>
+
+
+	if(isFacebook=="facebook.com"){
+
+
+
+		document.querySelector(".LinksDad").innerHTML=`
 	
-	`;
-	AllUrls.forEach((e) => {
+		<img src="${img}" alt="" style="width: 80%; margin: 0 auto 30px auto; border-radius: 20px;">
+		<br>
+		<h1 style="text-align: center;">Video From Facebook</h1>
+		<br>
+		<br>
+		
+		`;
 
-		if(e.attr.class==""&&e.type=="mp4"){
 
-			let x = parseInt(e.filesize);
-			
-			document.querySelector(".LinksDad").innerHTML+=`
-			<div style="margin: 10px 0px; min-width: 200px; display: flex; justify-content: center;">
+		AllUrls.forEach((e) => {
 
-				<a href="${e.url}" class="Link">${e.quality}p${!isNaN(x)?"_"+parseInt(x/1000000)+"MB":""}.${e.type} ${e.attr.class}</a>
-			</div>
-			`
+			if(e.type=="mp4"){
+	
+				let x = parseInt(e.filesize);
+				
+				document.querySelector(".LinksDad").innerHTML+=`
+				<div style="margin: 10px 0px; min-width: 200px; display: flex; justify-content: center;">
+	
+					<a href="${e.url}" class="Link">${e.subname}.${e.type}</a>
+				</div>
+				`
+	
+			};
+	
+		});
+	} else {
 
-		}
 
-	});
+
+		document.querySelector(".LinksDad").innerHTML=`
+	
+		<img src="${img}" alt="" style="width: 80%; margin: 0 auto 30px auto; border-radius: 20px;">
+		<br>
+		<h1 style="text-align: center;">${title}</h1>
+		<br>
+		<iframe rel="nofollow" style="width:200px; height:35px; border:none; border-radius: 6px; display:block;" src="https://apiyt.com/iframe/?vid=${id}"></iframe>
+		<br>
+		
+		`;
+
+		AllUrls.forEach((e) => {
+
+			if(e.attr.class==""&&e.type=="mp4"){
+	
+				let x = parseInt(e.filesize);
+				
+				document.querySelector(".LinksDad").innerHTML+=`
+				<div style="margin: 10px 0px; min-width: 200px; display: flex; justify-content: center;">
+	
+					<a href="${e.url}" class="Link">${e.quality}p${!isNaN(x)?"_"+parseInt(x/1000000)+"MB":""}.${e.type} ${e.attr.class}</a>
+				</div>
+				`
+	
+			};
+	
+		});
+
+	};
+
+
+
+	
 };
 
