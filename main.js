@@ -96,7 +96,7 @@ function showAllUrls(isFacebook,AllUrls,img,title,id){
 		<br>
 		<h1 style="text-align: center;">${title}</h1>
 		<br>
-		<iframe rel="nofollow" style="display: none!important; width:200px; height:35px; border:none; border-radius: 6px; display:block;" src="https://apiyt.com/iframe/?vid=${id}"></iframe>
+		<iframe rel="nofollow" style="display: none; width:200px; height:35px; border:none; border-radius: 6px; display:block;" src="https://apiyt.com/iframe/?vid=${id}"></iframe>
 		<br>
 		
 		`;
