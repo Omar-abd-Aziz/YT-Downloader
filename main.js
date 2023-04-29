@@ -51,11 +51,11 @@ document.querySelector(".download").addEventListener("click",()=>{
 
 
 
-function showAllUrls(isFacebook,AllUrls,img,title,id){
+function showAllUrls(WebName,AllUrls,img,title,id){
 	
 
 
-	if(isFacebook=="facebook.com"){
+	if(WebName=="facebook.com"||WebName=="tiktok.com"){
 
 
 
@@ -63,7 +63,7 @@ function showAllUrls(isFacebook,AllUrls,img,title,id){
 	
 		<img src="${img}" alt="" style="width: 80%; margin: 0 auto 30px auto; border-radius: 20px;">
 		<br>
-		<h1 style="text-align: center;">Video From Facebook</h1>
+		<h1 style="text-align: center;">Video From ${WebName}</h1>
 		<br>
 		<br>
 		
@@ -124,4 +124,3 @@ function showAllUrls(isFacebook,AllUrls,img,title,id){
 
 	
 };
-
